@@ -67,3 +67,44 @@ class Solution {
 합계: 50.0 / 100.0*/
 
 ------------------------------------------------------------------------------------------
+*/
+
+import java.util.*;
+
+class Solution {
+
+    public String solution(String[] participant, String[] completion) {
+        String answer="";
+        Arrays.sort(participant);
+        Arrays.sort(completion);
+     
+        for(int i = 0 ; i < completion.length ; i++){
+            if(!participant[i].equals(completion[i])){
+            answer = participant[i];
+                break;
+            }
+            }
+        if(answer==""){
+            answer = participant[participant.length-1];
+        }
+       return answer; }
+    }
+/*
+실행 결과
+채점을 시작합니다.
+정확성  테스트
+테스트 1 〉	통과 (0.25ms, 51.9MB)
+테스트 2 〉	통과 (0.33ms, 53.2MB)
+테스트 3 〉	통과 (2.72ms, 53.2MB)
+테스트 4 〉	통과 (9.76ms, 54.6MB)
+테스트 5 〉	통과 (6.20ms, 53.9MB)
+효율성  테스트
+테스트 1 〉	통과 (143.33ms, 81.6MB)
+테스트 2 〉	통과 (225.68ms, 88.3MB)
+테스트 3 〉	통과 (311.64ms, 94.8MB)
+테스트 4 〉	통과 (317.06ms, 96.6MB)
+테스트 5 〉	통과 (315.40ms, 96MB)
+채점 결과
+정확성: 50.0
+효율성: 50.0
+합계: 100.0 / 100.0*/
