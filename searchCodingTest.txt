@@ -61,7 +61,7 @@ class Solution {
 		        //int[] answer3 = {3,3,1,1,2,2,4,4,5,5};
 		        ArrayList<Integer> answer3 = new ArrayList<Integer>();
 		        
-		       //1번 배열
+		       //1번 배열 
 
 		        while(answer1.size()<=10000){
 		        	answer1.add(1);
