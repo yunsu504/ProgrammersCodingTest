@@ -2,6 +2,7 @@ package com.oopsw.test;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -61,7 +62,9 @@ N	stages	result
 
 public class kakaoBlindCodingTest01 {
 
-    public int[] solution(int N, int[] stages) {
+	public static void main(String[] args) {
+		int N = 10;
+		int[] stages = {1,2,3,4,5,6,7,8};
         int[] answer = new int[N];
         int onStageNotClear = stages.length;
 		int onStage = 0;
@@ -76,10 +79,18 @@ public class kakaoBlindCodingTest01 {
 					onStageNotClear --;
 				}
 			} //for j
+			
+			if (onStageNotClear != 0){
 			map.put(i+1, (double)onStageNotClear / onStage );			
 			countDropout += onStageNotClear; 
 			onStageNotClear = stages.length - countDropout;
+			} else{
+			map.put(i+1, (double) 0 );	
+			}
+			
 			onStage = 0;
+			
+			
 		}// for i 
 //System.out.println("------value 내림차순------");
 //https://daily-life-of-bsh.tistory.com/99
@@ -90,7 +101,7 @@ public class kakaoBlindCodingTest01 {
 			answer[index] = key;
 			index++;
 		}
-		return answer;
+		System.out.println(Arrays.toString(answer));
 		
 	}
 
@@ -99,33 +110,33 @@ public class kakaoBlindCodingTest01 {
 /*실행 결과
 채점을 시작합니다.
 정확성  테스트
-테스트 1 〉	실패 (0.84ms, 53MB)
-테스트 2 〉	통과 (1.36ms, 52.4MB)
-테스트 3 〉	통과 (44.25ms, 53.8MB)
-테스트 4 〉	통과 (127.84ms, 56.5MB)
-테스트 5 〉	통과 (456.81ms, 62.5MB)
-테스트 6 〉	실패 (5.90ms, 52.2MB)
-테스트 7 〉	실패 (26.13ms, 53.2MB)
-테스트 8 〉	통과 (141.81ms, 56.9MB)
-테스트 9 〉	실패 (503.30ms, 61.8MB)
-테스트 10 〉	통과 (63.78ms, 55.5MB)
-테스트 11 〉	통과 (179.42ms, 60.1MB)
-테스트 12 〉	통과 (81.12ms, 58MB)
-테스트 13 〉	실패 (141.97ms, 60.7MB)
-테스트 14 〉	통과 (1.13ms, 52.3MB)
-테스트 15 〉	통과 (14.56ms, 54.9MB)
-테스트 16 〉	통과 (11.28ms, 53.9MB)
-테스트 17 〉	통과 (18.30ms, 54.5MB)
-테스트 18 〉	통과 (10.44ms, 54MB)
-테스트 19 〉	통과 (4.92ms, 53.1MB)
-테스트 20 〉	통과 (20.83ms, 54.7MB)
-테스트 21 〉	통과 (29.17ms, 56.5MB)
-테스트 22 〉	통과 (183.95ms, 62.8MB)
-테스트 23 〉	실패 (21.22ms, 58.8MB)
-테스트 24 〉	실패 (29.64ms, 59.1MB)
-테스트 25 〉	실패 (2.44ms, 52.7MB)
-테스트 26 〉	통과 (0.90ms, 52.6MB)
-테스트 27 〉	통과 (2.20ms, 52.4MB)
+테스트 1 〉	실패 (1.98ms, 55.5MB)
+테스트 2 〉	통과 (1.33ms, 52.5MB)
+테스트 3 〉	통과 (75.08ms, 57.2MB)
+테스트 4 〉	통과 (119.33ms, 56.5MB)
+테스트 5 〉	통과 (404.98ms, 61.6MB)
+테스트 6 〉	통과 (6.30ms, 53MB)
+테스트 7 〉	통과 (23.88ms, 55.5MB)
+테스트 8 〉	통과 (131.49ms, 56.6MB)
+테스트 9 〉	통과 (504.00ms, 62.1MB)
+테스트 10 〉	실패 (69.52ms, 56MB)
+테스트 11 〉	실패 (143.88ms, 56.4MB)
+테스트 12 〉	실패 (126.61ms, 59.1MB)
+테스트 13 〉	통과 (133.64ms, 59.7MB)
+테스트 14 〉	실패 (1.02ms, 52.8MB)
+테스트 15 〉	통과 (17.93ms, 55.7MB)
+테스트 16 〉	통과 (11.44ms, 53.4MB)
+테스트 17 〉	통과 (13.32ms, 56.3MB)
+테스트 18 〉	통과 (12.22ms, 54.1MB)
+테스트 19 〉	통과 (4.93ms, 52.4MB)
+테스트 20 〉	통과 (16.10ms, 55.1MB)
+테스트 21 〉	통과 (16.15ms, 55.8MB)
+테스트 22 〉	통과 (342.60ms, 63.7MB)
+테스트 23 〉	통과 (25.47ms, 59.5MB)
+테스트 24 〉	통과 (42.72ms, 59.4MB)
+테스트 25 〉	통과 (0.92ms, 52.7MB)
+테스트 26 〉	통과 (0.76ms, 52.8MB)
+테스트 27 〉	통과 (0.80ms, 53.2MB)
 채점 결과
-정확성: 70.4
-합계: 70.4 / 100.0*/
+정확성: 81.5
+합계: 81.5 / 100.0*/
