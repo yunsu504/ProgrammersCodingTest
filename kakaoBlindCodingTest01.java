@@ -62,81 +62,75 @@ N	stages	result
 
 public class kakaoBlindCodingTest01 {
 
-	public static void main(String[] args) {
-		int N = 10;
-		int[] stages = {1,2,3,4,5,6,7,8};
-        int[] answer = new int[N];
-        int onStageNotClear = stages.length;
-		int onStage = 0;
-		int countDropout = 0;
-		Map<Integer, Double> map = new HashMap<>();
-		for (int i = 0; i < N; i++ ){
-			for (int j = 0; j < stages.length; j++){
-				if(stages[j] >= i+1){
-					onStage ++;
+		 public int[] solution(int N, int[] stages) {
+		        int[] answer = new int[N];
+		        int onStageNotClear = stages.length;
+				int onStage = 0;
+				int countDropout = 0;
+				Map<Integer, Double> map = new HashMap<>();
+				for (int i = 0; i < N; i++ ){
+					for (int j = 0; j < stages.length; j++){
+						if(stages[j] >= i+1){
+							onStage ++;
+						}
+						if(stages[j] > i+1){
+							onStageNotClear --;
+						}
+					} //for j
+		            if (onStageNotClear != 0){
+					map.put(i+1, (double)onStageNotClear / onStage );			
+					countDropout += onStageNotClear; 
+					
+					} else{
+					map.put(i+1, (double) 0 );	
+					}
+					onStageNotClear = stages.length - countDropout;
+					onStage = 0;
+				}// for i 
+				List<Integer> keySetList = new ArrayList<>(map.keySet());
+				Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
+				int index = 0;
+				for(Integer key : keySetList) {
+					answer[index] = key;
+					index++;
 				}
-				if(stages[j] > i+1){
-					onStageNotClear --;
-				}
-			} //for j
-			
-			if (onStageNotClear != 0){
-			map.put(i+1, (double)onStageNotClear / onStage );			
-			countDropout += onStageNotClear; 
-			onStageNotClear = stages.length - countDropout;
-			} else{
-			map.put(i+1, (double) 0 );	
+				return answer;
+				
 			}
-			
-			onStage = 0;
-			
-			
-		}// for i 
-//System.out.println("------value 내림차순------");
-//https://daily-life-of-bsh.tistory.com/99
-		List<Integer> keySetList = new ArrayList<>(map.keySet());
-		Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
-		int index = 0;
-		for(Integer key : keySetList) {
-			answer[index] = key;
-			index++;
-		}
-		System.out.println(Arrays.toString(answer));
-		
-	}
 
-	}
-
+			}
+		//System.out.println("------value 내림차순------");
+				//https://daily-life-of-bsh.tistory.com/99
 /*실행 결과
-채점을 시작합니다.
+같은 코드로 채점한 결과가 있습니다.
 정확성  테스트
-테스트 1 〉	실패 (1.98ms, 55.5MB)
-테스트 2 〉	통과 (1.33ms, 52.5MB)
-테스트 3 〉	통과 (75.08ms, 57.2MB)
-테스트 4 〉	통과 (119.33ms, 56.5MB)
-테스트 5 〉	통과 (404.98ms, 61.6MB)
-테스트 6 〉	통과 (6.30ms, 53MB)
-테스트 7 〉	통과 (23.88ms, 55.5MB)
-테스트 8 〉	통과 (131.49ms, 56.6MB)
-테스트 9 〉	통과 (504.00ms, 62.1MB)
-테스트 10 〉	실패 (69.52ms, 56MB)
-테스트 11 〉	실패 (143.88ms, 56.4MB)
-테스트 12 〉	실패 (126.61ms, 59.1MB)
-테스트 13 〉	통과 (133.64ms, 59.7MB)
-테스트 14 〉	실패 (1.02ms, 52.8MB)
-테스트 15 〉	통과 (17.93ms, 55.7MB)
-테스트 16 〉	통과 (11.44ms, 53.4MB)
-테스트 17 〉	통과 (13.32ms, 56.3MB)
-테스트 18 〉	통과 (12.22ms, 54.1MB)
-테스트 19 〉	통과 (4.93ms, 52.4MB)
-테스트 20 〉	통과 (16.10ms, 55.1MB)
-테스트 21 〉	통과 (16.15ms, 55.8MB)
-테스트 22 〉	통과 (342.60ms, 63.7MB)
-테스트 23 〉	통과 (25.47ms, 59.5MB)
-테스트 24 〉	통과 (42.72ms, 59.4MB)
-테스트 25 〉	통과 (0.92ms, 52.7MB)
-테스트 26 〉	통과 (0.76ms, 52.8MB)
-테스트 27 〉	통과 (0.80ms, 53.2MB)
+테스트 1 〉	통과 (0.97ms, 52.3MB)
+테스트 2 〉	통과 (0.91ms, 52.8MB)
+테스트 3 〉	통과 (62.66ms, 57MB)
+테스트 4 〉	통과 (129.03ms, 59.6MB)
+테스트 5 〉	통과 (488.38ms, 61.7MB)
+테스트 6 〉	통과 (4.54ms, 52.1MB)
+테스트 7 〉	통과 (15.59ms, 52.7MB)
+테스트 8 〉	통과 (129.62ms, 56.6MB)
+테스트 9 〉	통과 (474.64ms, 64MB)
+테스트 10 〉	통과 (53.53ms, 55.6MB)
+테스트 11 〉	통과 (102.37ms, 57.4MB)
+테스트 12 〉	통과 (73.28ms, 57MB)
+테스트 13 〉	통과 (119.35ms, 60MB)
+테스트 14 〉	통과 (2.24ms, 52.1MB)
+테스트 15 〉	통과 (19.74ms, 54.9MB)
+테스트 16 〉	통과 (11.17ms, 54MB)
+테스트 17 〉	통과 (15.33ms, 54.6MB)
+테스트 18 〉	통과 (11.86ms, 54MB)
+테스트 19 〉	통과 (5.50ms, 52.3MB)
+테스트 20 〉	통과 (11.26ms, 53.8MB)
+테스트 21 〉	통과 (13.07ms, 56.6MB)
+테스트 22 〉	통과 (171.15ms, 61.8MB)
+테스트 23 〉	통과 (27.56ms, 59.4MB)
+테스트 24 〉	통과 (35.03ms, 58.2MB)
+테스트 25 〉	통과 (0.78ms, 51.7MB)
+테스트 26 〉	통과 (0.72ms, 52.9MB)
+테스트 27 〉	통과 (0.78ms, 51.9MB)
 채점 결과
-정확성: 81.5
-합계: 81.5 / 100.0*/
+정확성: 100.0
+합계: 100.0 / 100.0*/
