@@ -50,94 +50,95 @@ Single(S), Double(D), Triple(T)은 점수마다 하나씩 존재한다.
 7	1D2S3T*	59	12 + 21 * 2 + 33 * 2*/
 public class kakaoBlindCodingTest02 {
 
-	   public int solution(String dartResult) {
-     		int answer = 0;
-		int j = 0;
-		int[] numberLoop = new int[6];
-       for (int i = 0; i < dartResult.length(); i++){
-           char splitInput = dartResult.charAt(i);
-           //숫자 = 9, 대문자 = 1, 특수문자 = 24
-           int getType = Character.getType(splitInput);
-           switch (getType){
-           case 9:
-           if (Character.compare(dartResult.charAt(i+1), '0') == 0){
-           		numberLoop[j] = 10;
-           	}else if (splitInput == '0'){
-                   
-           	}else{
-           		numberLoop[j] = Character.getNumericValue(splitInput);
-           	}
-           	j++;
-           	break;
-           case 1:
-           	if (splitInput == 'S'){
-           		numberLoop[j-1] = (int) Math.pow(numberLoop[j-1], 1);
-           		break;
-           	}else if (splitInput == 'D'){
-           		numberLoop[j-1] = (int)Math.pow(numberLoop[j-1], 2);
-           		break;
-           	}else if (splitInput == 'T'){
-           		numberLoop[j-1] = (int)Math.pow(numberLoop[j-1], 3);
-           		break;
-           	}
-           case 24:
-           	if (splitInput == '*'){
-           		if ( j > 1 ){
-           			numberLoop[j-2] = numberLoop[j-2] *2;
-           			numberLoop[j-1] = numberLoop[j-1] *2;
-           		}else{
-           			numberLoop[j-1] = numberLoop[j-1] *2;
-           		}
-           		break;
-           	}else if (splitInput == '#'){
-           		numberLoop[j-1] = numberLoop[j-1] * (-1);
-           		break;
-           	}
-           }//switch end
-       }//for end
-       for (int e : numberLoop){
-       	answer += e ;
-       }
-       return answer;
-	}
+    public int solution(String dartResult) {
+  		int answer = 0;
+	int j = 0;
+	int[] numberLoop = new int[6];
+    for (int i = 0; i < dartResult.length(); i++){
+        char splitInput = dartResult.charAt(i);
+        //숫자 = 9, 대문자 = 1, 특수문자 = 24
+        int getType = Character.getType(splitInput);
+        switch (getType){
+        case 9:
+        if (Character.compare(dartResult.charAt(i+1), '0') == 0){
+        		numberLoop[j] = 10;
+                i++;
+        	}else if (splitInput == '0'){
+                numberLoop[j] = 0;
+        	}else{
+        		numberLoop[j] = Character.getNumericValue(splitInput);
+        	}
+        	j++;
+        	break;
+        case 1:
+        	if (splitInput == 'S'){
+        		numberLoop[j-1] = (int) Math.pow(numberLoop[j-1], 1);
+        		break;
+        	}else if (splitInput == 'D'){
+        		numberLoop[j-1] = (int)Math.pow(numberLoop[j-1], 2);
+        		break;
+        	}else if (splitInput == 'T'){
+        		numberLoop[j-1] = (int)Math.pow(numberLoop[j-1], 3);
+        		break;
+        	}
+        case 24:
+        	if (splitInput == '*'){
+        		if ( j > 1 ){
+        			numberLoop[j-2] = numberLoop[j-2] *2;
+        			numberLoop[j-1] = numberLoop[j-1] *2;
+        		}else{
+        			numberLoop[j-1] = numberLoop[j-1] *2;
+        		}
+        		break;
+        	}else if (splitInput == '#'){
+        		numberLoop[j-1] = numberLoop[j-1] * (-1);
+        		break;
+        	}
+        }//switch end
+    }//for end
+    for (int e : numberLoop){
+    	answer += e ;
+    }
+    return answer;
+}
 }
 //10조건 체크를 수정해보자
 /*
 실행 결과
 같은 코드로 채점한 결과가 있습니다.
 정확성  테스트
-테스트 1 〉	통과 (0.07ms, 52.8MB)
-테스트 2 〉	통과 (0.06ms, 52.3MB)
-테스트 3 〉	통과 (0.06ms, 52.6MB)
-테스트 4 〉	실패 (0.07ms, 52.9MB)
-테스트 5 〉	실패 (0.06ms, 53.2MB)
-테스트 6 〉	실패 (0.08ms, 54.1MB)
-테스트 7 〉	실패 (0.08ms, 52.3MB)
-테스트 8 〉	통과 (0.08ms, 52.9MB)
-테스트 9 〉	통과 (0.07ms, 53MB)
-테스트 10 〉	통과 (0.08ms, 53.4MB)
-테스트 11 〉	통과 (0.07ms, 52.5MB)
-테스트 12 〉	통과 (0.08ms, 52.2MB)
-테스트 13 〉	통과 (0.09ms, 52.6MB)
-테스트 14 〉	통과 (0.09ms, 51.8MB)
-테스트 15 〉	통과 (0.09ms, 52.1MB)
-테스트 16 〉	통과 (0.08ms, 52.7MB)
-테스트 17 〉	통과 (0.07ms, 52.3MB)
-테스트 18 〉	통과 (0.07ms, 52.1MB)
-테스트 19 〉	통과 (0.07ms, 53.1MB)
-테스트 20 〉	통과 (0.11ms, 51.9MB)
-테스트 21 〉	통과 (0.08ms, 54.1MB)
-테스트 22 〉	통과 (0.08ms, 52.4MB)
-테스트 23 〉	통과 (0.07ms, 52.8MB)
-테스트 24 〉	통과 (0.07ms, 53.1MB)
-테스트 25 〉	통과 (0.06ms, 52MB)
-테스트 26 〉	통과 (0.07ms, 51.7MB)
-테스트 27 〉	통과 (0.07ms, 52.3MB)
-테스트 28 〉	통과 (0.09ms, 52.4MB)
-테스트 29 〉	통과 (0.06ms, 52.4MB)
-테스트 30 〉	통과 (0.12ms, 52.7MB)
-테스트 31 〉	통과 (0.08ms, 52.9MB)
-테스트 32 〉	통과 (0.08ms, 52.6MB)
+테스트 1 〉	통과 (0.07ms, 53.2MB)
+테스트 2 〉	통과 (0.08ms, 51.9MB)
+테스트 3 〉	통과 (0.07ms, 52.3MB)
+테스트 4 〉	통과 (0.07ms, 52.8MB)
+테스트 5 〉	통과 (0.08ms, 53MB)
+테스트 6 〉	통과 (0.10ms, 53.2MB)
+테스트 7 〉	통과 (0.07ms, 52.7MB)
+테스트 8 〉	통과 (0.11ms, 52.1MB)
+테스트 9 〉	통과 (0.07ms, 52.8MB)
+테스트 10 〉	통과 (0.07ms, 52.3MB)
+테스트 11 〉	통과 (0.08ms, 52.8MB)
+테스트 12 〉	통과 (0.06ms, 52MB)
+테스트 13 〉	통과 (0.11ms, 52.1MB)
+테스트 14 〉	통과 (0.09ms, 52.1MB)
+테스트 15 〉	통과 (0.11ms, 52.2MB)
+테스트 16 〉	통과 (0.09ms, 51.7MB)
+테스트 17 〉	통과 (0.07ms, 52.4MB)
+테스트 18 〉	통과 (0.09ms, 52.7MB)
+테스트 19 〉	통과 (0.08ms, 51.7MB)
+테스트 20 〉	통과 (0.09ms, 51.9MB)
+테스트 21 〉	통과 (0.07ms, 52.5MB)
+테스트 22 〉	통과 (0.06ms, 52.2MB)
+테스트 23 〉	통과 (0.08ms, 53.4MB)
+테스트 24 〉	통과 (0.07ms, 52.6MB)
+테스트 25 〉	통과 (0.09ms, 52.5MB)
+테스트 26 〉	통과 (0.08ms, 53.1MB)
+테스트 27 〉	통과 (0.07ms, 53.2MB)
+테스트 28 〉	통과 (0.07ms, 51.8MB)
+테스트 29 〉	통과 (0.07ms, 52.1MB)
+테스트 30 〉	통과 (0.07ms, 51.7MB)
+테스트 31 〉	통과 (0.07ms, 51.6MB)
+테스트 32 〉	통과 (0.08ms, 51.9MB)
 채점 결과
-정확성: 87.5
-합계: 87.5 / 100.0*/
+정확성: 100.0
+합계: 100.0 / 100.0*/
